@@ -1,0 +1,48 @@
+function mergeSort1(arr) {
+  if (arr.length < 2) {
+    return arr
+  }
+  const mid = Math.floor(arr.length / 2)
+  const leftArr = arr.slice(0, mid)
+  const rightArr = arr.slice(mid)
+  return merge1(mergeSort1(leftArr), mergeSort1(rightArr))
+}
+function merge1(leftArr, rightArr) {
+  const sortedArr = []
+  while (leftArr.length && rightArr.length) {
+    if (leftArr[0] <= rightArr[0]) {
+      sortedArr.push(leftArr.shift())
+    } else {
+      sortedArr.push(rightArr.shift())
+    }
+  }
+  const resultArr1 = [...sortedArr, ...leftArr, ...rightArr]
+  return resultArr1
+}
+
+const num =  [45,12,6,89,2,5]
+let target1 = 6
+let sortedArr1 = mergeSort1(num)
+console.log(sortedArr1)
+
+// binary search algorithm
+function binary (num, target){
+    let left = 0
+    let right  = num.length -1 ;
+    while(left <= right){
+        let middle = Math.floor( (left + right)/2);
+        if(num[middle]=== target){
+            return middle;
+        }
+        else if(num[middle] < target){
+            left = middle+1;
+
+        }
+        else {
+            right = middle -1;
+        }
+
+    }
+    return null
+}
+  console.log(binary(sortedArr1, target1))
